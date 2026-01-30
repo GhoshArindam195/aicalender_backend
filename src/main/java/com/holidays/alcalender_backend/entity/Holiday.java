@@ -17,8 +17,8 @@ public class Holiday {
     @Column
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "holiday_type_id", nullable = false)
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private HolidayType holidayType;
 
     @OneToMany(mappedBy = "holiday", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

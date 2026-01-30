@@ -10,7 +10,6 @@ import com.holidays.alcalender_backend.entity.State;
 import com.holidays.alcalender_backend.mapper.HolidayInstanceMapper;
 import com.holidays.alcalender_backend.repository.HolidayInstanceRepository;
 import com.holidays.alcalender_backend.repository.HolidayRepository;
-import com.holidays.alcalender_backend.repository.HolidayTypeRepository;
 import com.holidays.alcalender_backend.repository.StateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,9 +28,6 @@ public class HolidayService {
 
     @Autowired
     private StateRepository stateRepository;
-
-    @Autowired
-    private HolidayTypeRepository holidayTypeRepository;
 
     @Autowired
     private HolidayRepository holidayRepository;
@@ -59,12 +55,12 @@ public class HolidayService {
                 state = stateRepository.save(state);
             }
             for (HolidayInstanceDto holidayDto : stateHolidays.getHolidays()) {
-                HolidayType holidayType = holidayTypeRepository.findByName(holidayDto.getHolidayType());
+                // Map the holiday type enum from the DTO
+                HolidayType holidayType = holidayDto.getHolidayType();
                 if (holidayType == null) {
-                    holidayType = new HolidayType();
-                    holidayType.setName(holidayDto.getHolidayType());
-                    holidayType = holidayTypeRepository.save(holidayType);
+                    holidayType = HolidayType.REGIONAL; // Default to Regional
                 }
+                
                 Holiday holiday = holidayRepository.findByName(holidayDto.getName());
                 if (holiday == null) {
                     holiday = new Holiday();
@@ -77,8 +73,6 @@ public class HolidayService {
                 holidayInstance.setState(state);
                 holidayInstance.setDate(holidayDto.getDate());
                 holidayInstance.setYear(holidayDto.getYear());
-                holidayInstance.setIsNational(holidayDto.getIsNational());
-                holidayInstance.setIsBankHoliday(holidayDto.getIsBankHoliday());
                 holidayInstance.setIsOptional(holidayDto.getIsOptional());
                 holidayInstanceRepository.save(holidayInstance);
             }

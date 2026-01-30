@@ -10,7 +10,7 @@ import org.mapstruct.ReportingPolicy;
 public interface HolidayInstanceMapper {
 
     @Mapping(target = "name", source = "holiday.name")
-    @Mapping(target = "holidayType", source = "holiday.holidayType.name")
+    @Mapping(target = "holidayType", source = "holiday.holidayType")
     @Mapping(target = "stateCode", source = "state.code")
     @Mapping(target = "stateName", source = "state.name")
     HolidayInstanceDto toDto(HolidayInstance holidayInstance);

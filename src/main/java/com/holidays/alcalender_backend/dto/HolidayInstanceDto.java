@@ -1,26 +1,25 @@
 package com.holidays.alcalender_backend.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.holidays.alcalender_backend.entity.HolidayType;
 import java.time.LocalDate;
 
 public class HolidayInstanceDto {
 
     private Long id;
     private String name;
-    private String holidayType;
+    private HolidayType holidayType;
     private String stateCode;
     private String stateName;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     private Integer year;
-    private Boolean isNational;
-    private Boolean isBankHoliday;
     private Boolean isOptional;
 
     // Constructors
     public HolidayInstanceDto() {}
 
-    public HolidayInstanceDto(Long id, String name, String holidayType, String stateCode, String stateName, LocalDate date, Integer year, Boolean isNational, Boolean isBankHoliday, Boolean isOptional) {
+    public HolidayInstanceDto(Long id, String name, HolidayType holidayType, String stateCode, String stateName, LocalDate date, Integer year, Boolean isOptional) {
         this.id = id;
         this.name = name;
         this.holidayType = holidayType;
@@ -28,8 +27,6 @@ public class HolidayInstanceDto {
         this.stateName = stateName;
         this.date = date;
         this.year = year;
-        this.isNational = isNational;
-        this.isBankHoliday = isBankHoliday;
         this.isOptional = isOptional;
     }
 
@@ -40,8 +37,8 @@ public class HolidayInstanceDto {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
-    public String getHolidayType() { return holidayType; }
-    public void setHolidayType(String holidayType) { this.holidayType = holidayType; }
+    public HolidayType getHolidayType() { return holidayType; }
+    public void setHolidayType(HolidayType holidayType) { this.holidayType = holidayType; }
 
     public String getStateCode() { return stateCode; }
     public void setStateCode(String stateCode) { this.stateCode = stateCode; }
@@ -54,12 +51,6 @@ public class HolidayInstanceDto {
 
     public Integer getYear() { return year; }
     public void setYear(Integer year) { this.year = year; }
-
-    public Boolean getIsNational() { return isNational; }
-    public void setIsNational(Boolean isNational) { this.isNational = isNational; }
-
-    public Boolean getIsBankHoliday() { return isBankHoliday; }
-    public void setIsBankHoliday(Boolean isBankHoliday) { this.isBankHoliday = isBankHoliday; }
 
     public Boolean getIsOptional() { return isOptional; }
     public void setIsOptional(Boolean isOptional) { this.isOptional = isOptional; }
