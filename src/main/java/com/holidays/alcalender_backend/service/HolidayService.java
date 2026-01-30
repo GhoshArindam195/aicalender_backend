@@ -72,7 +72,6 @@ public class HolidayService {
                 holidayInstance.setHoliday(holiday);
                 holidayInstance.setState(state);
                 holidayInstance.setDate(holidayDto.getDate());
-                holidayInstance.setYear(holidayDto.getYear());
                 holidayInstance.setIsOptional(holidayDto.getIsOptional());
                 holidayInstanceRepository.save(holidayInstance);
             }

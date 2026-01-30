@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface HolidayInstanceRepository extends JpaRepository<HolidayInstance, Long> {
 
-    @Query("SELECT hi FROM HolidayInstance hi WHERE hi.state.code = :stateCode AND hi.year = :year")
+    @Query("SELECT hi FROM HolidayInstance hi WHERE hi.state.code = :stateCode AND YEAR(hi.date) = :year")
     List<HolidayInstance> findByStateCodeAndYear(@Param("stateCode") String stateCode, @Param("year") Integer year);
 }

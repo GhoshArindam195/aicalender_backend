@@ -13,20 +13,18 @@ public class HolidayInstanceDto {
     private String stateName;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
-    private Integer year;
     private Boolean isOptional;
 
     // Constructors
     public HolidayInstanceDto() {}
 
-    public HolidayInstanceDto(Long id, String name, HolidayType holidayType, String stateCode, String stateName, LocalDate date, Integer year, Boolean isOptional) {
+    public HolidayInstanceDto(Long id, String name, HolidayType holidayType, String stateCode, String stateName, LocalDate date, Boolean isOptional) {
         this.id = id;
         this.name = name;
         this.holidayType = holidayType;
         this.stateCode = stateCode;
         this.stateName = stateName;
         this.date = date;
-        this.year = year;
         this.isOptional = isOptional;
     }
 
@@ -48,9 +46,6 @@ public class HolidayInstanceDto {
 
     public LocalDate getDate() { return date; }
     public void setDate(LocalDate date) { this.date = date; }
-
-    public Integer getYear() { return year; }
-    public void setYear(Integer year) { this.year = year; }
 
     public Boolean getIsOptional() { return isOptional; }
     public void setIsOptional(Boolean isOptional) { this.isOptional = isOptional; }

@@ -23,26 +23,21 @@ public class HolidayInstance {
     private LocalDate date;
 
     @Column(nullable = false)
-    private Integer year;
-
-    @Column(nullable = false)
     private Boolean isOptional = false;
 
     // Constructors
     public HolidayInstance() {}
 
-    public HolidayInstance(Holiday holiday, State state, LocalDate date, Integer year) {
+    public HolidayInstance(Holiday holiday, State state, LocalDate date) {
         this.holiday = holiday;
         this.state = state;
         this.date = date;
-        this.year = year;
     }
 
-    public HolidayInstance(Holiday holiday, State state, LocalDate date, Integer year, Boolean isOptional) {
+    public HolidayInstance(Holiday holiday, State state, LocalDate date, Boolean isOptional) {
         this.holiday = holiday;
         this.state = state;
         this.date = date;
-        this.year = year;
         this.isOptional = isOptional;
     }
 
@@ -58,9 +53,6 @@ public class HolidayInstance {
 
     public LocalDate getDate() { return date; }
     public void setDate(LocalDate date) { this.date = date; }
-
-    public Integer getYear() { return year; }
-    public void setYear(Integer year) { this.year = year; }
 
     public Boolean getIsOptional() { return isOptional; }
     public void setIsOptional(Boolean isOptional) { this.isOptional = isOptional; }
