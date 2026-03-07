@@ -11,6 +11,7 @@ import com.holidays.alcalender_backend.mapper.HolidayInstanceMapper;
 import com.holidays.alcalender_backend.repository.HolidayInstanceRepository;
 import com.holidays.alcalender_backend.repository.HolidayRepository;
 import com.holidays.alcalender_backend.repository.StateRepository;
+import com.holidays.alcalender_backend.util.LongWeekendUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,11 +33,17 @@ public class HolidayService {
     @Autowired
     private HolidayRepository holidayRepository;
 
+    @Autowired
+    private LongWeekendUtil longWeekendUtil;
+
     public List<HolidayInstanceDto> getHolidaysByStateAndYear(String stateCode, Integer year) {
         List<HolidayInstance> holidayInstances = holidayInstanceRepository.findByStateCodeAndYear(stateCode, year);
-        return holidayInstances.stream()
+        List<HolidayInstanceDto> holidays = holidayInstances.stream()
                 .map(holidayInstanceMapper::toDto)
                 .collect(Collectors.toList());
+        
+        // AC1: Apply Long Weekend detection logic
+        return longWeekendUtil.analyzeHolidays(holidays);
     }
 
     public HolidayInstanceDto createHolidayInstance(HolidayInstanceDto holidayInstanceDto) {

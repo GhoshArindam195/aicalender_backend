@@ -14,6 +14,11 @@ public class HolidayInstanceDto {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     private Boolean isOptional;
+    
+    // Long Weekend Detection fields (AC1, AC2)
+    private Boolean isLongWeekend;
+    private Boolean isBridgeDay;
+    private String dayOfWeek;
 
     // Constructors
     public HolidayInstanceDto() {}
@@ -26,6 +31,20 @@ public class HolidayInstanceDto {
         this.stateName = stateName;
         this.date = date;
         this.isOptional = isOptional;
+    }
+
+    public HolidayInstanceDto(Long id, String name, HolidayType holidayType, String stateCode, String stateName, 
+                               LocalDate date, Boolean isOptional, Boolean isLongWeekend, Boolean isBridgeDay, String dayOfWeek) {
+        this.id = id;
+        this.name = name;
+        this.holidayType = holidayType;
+        this.stateCode = stateCode;
+        this.stateName = stateName;
+        this.date = date;
+        this.isOptional = isOptional;
+        this.isLongWeekend = isLongWeekend;
+        this.isBridgeDay = isBridgeDay;
+        this.dayOfWeek = dayOfWeek;
     }
 
     // Getters and Setters
@@ -49,4 +68,13 @@ public class HolidayInstanceDto {
 
     public Boolean getIsOptional() { return isOptional; }
     public void setIsOptional(Boolean isOptional) { this.isOptional = isOptional; }
+
+    public Boolean getIsLongWeekend() { return isLongWeekend; }
+    public void setIsLongWeekend(Boolean isLongWeekend) { this.isLongWeekend = isLongWeekend; }
+
+    public Boolean getIsBridgeDay() { return isBridgeDay; }
+    public void setIsBridgeDay(Boolean isBridgeDay) { this.isBridgeDay = isBridgeDay; }
+
+    public String getDayOfWeek() { return dayOfWeek; }
+    public void setDayOfWeek(String dayOfWeek) { this.dayOfWeek = dayOfWeek; }
 }
